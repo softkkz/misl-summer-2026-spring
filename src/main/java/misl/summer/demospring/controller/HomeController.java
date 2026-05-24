@@ -24,28 +24,33 @@ public class HomeController {
 	}
 	
 	@GetMapping("/hello/{name}")
-	public String hello(@PathVariable String name) {
-		return "Hello, " + name + "!"; // OK
+	public ResponseEntity<String> hello(@PathVariable String name) {
+		String result = "Hello, " + name;
+		return ResponseEntity.ok(result); // OK
 	}
 	
 	@PostMapping("/post")
-	public String post(@RequestBody String name) {
-		return name + " Added. (POST)"; // Created
+	public ResponseEntity<String> post(@RequestBody String name) {
+		String result = name + "Added. (POST)";
+		return ResponseEntity.status(HttpStatus.CREATED).body(result); // Created
 	}
 	
 	@PutMapping("/put")
-	public String put(@RequestBody String name) {
-		return name + " Updated. (PUT)"; // OK, No Content
+	public ResponseEntity<String> put(@RequestBody String name) {
+		String result = name + " Updated. (PUT)";
+		return ResponseEntity.ok(result); // OK, No Content
 	}
 	
 	@PatchMapping("/patch")
-	public String patch(@RequestBody String name) {
-		return name + " Updated. (PATCH)"; // OK, No Content
+	public ResponseEntity<String> patch(@RequestBody String name) {
+		String result = name + "Updated. (PATCH)";
+		return ResponseEntity.ok(result); // OK, No Content
 	}
 	
 	@DeleteMapping("/delete")
-	public String delete() {
-		return "Deleted."; // OK
+	public ResponseEntity<String> delete() {
+		String result = "Deleted.";
+		return ResponseEntity.ok(result); // OK
 	}
 }
 
