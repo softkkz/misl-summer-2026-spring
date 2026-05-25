@@ -3,10 +3,15 @@ package misl.summer.demospring.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import misl.summer.demospring.model.Pet;
@@ -39,17 +44,6 @@ public class PetController {
 	
 	@GetMapping("/pet/{id}")
 	public ResponseEntity<Pet> getPet(@PathVariable int id){
-		
-//		Pet pet = null;
-		
-//		for(int i = 0; i < petList.size(); i++) {
-//			Pet item = petList.get(i);
-//			
-//			if(item.id == id) {
-//				pet = item;
-//			}
-//			
-//		}
 
 		for(Pet item : petList) {
 			if(item.id == id) {
@@ -59,5 +53,47 @@ public class PetController {
 		
 		return ResponseEntity.badRequest().build();
 	}
+	
+	@PostMapping("/add")
+	public ResponseEntity<Pet> addPet(@RequestBody Pet body){
+		petList.add(body);
+		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
+	
+	@PutMapping("/update/{id}")
+	public ResponseEntity<Pet> updatePet(@PathVariable int id, @RequestBody Pet body){
+		
+		Pet updatePet = null;
+		
+		for(Pet item : petList) {
+			if(item.id == id) {
+				item.id = body.id;
+				item.name = body.name;
+				item.birthDate = body.birthDate;
+				item.category = body.category;
+				item.owner = body.owner;
+				
+				updatePet = item;
+			}
+		}
+		
+		return ResponseEntity.ok(updatePet);
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ResponseEntity<Pet> deletePet(@PathVariable int id){
+		for(int i = 0; i < petList.size(); i++) {
+			Pet item = petList.get(i);
+			
+			if(item.id == id) {
+				petList.remove(i);
+				return ResponseEntity.status(HttpStatus.OK).build();
+			}
+		}
+		
+		return ResponseEntity.badRequest().build();
+		
+	}
+	
 	
 }
