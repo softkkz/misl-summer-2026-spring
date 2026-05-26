@@ -46,7 +46,7 @@ public class PetController {
 	public ResponseEntity<Pet> getPet(@PathVariable int id){
 
 		for(Pet item : petList) {
-			if(item.id == id) {
+			if(item.getId() == id) {
 				return ResponseEntity.ok(item);
 			}
 		}
@@ -66,12 +66,13 @@ public class PetController {
 		Pet updatePet = null;
 		
 		for(Pet item : petList) {
-			if(item.id == id) {
-				item.id = body.id;
-				item.name = body.name;
-				item.birthDate = body.birthDate;
-				item.category = body.category;
-				item.owner = body.owner;
+			if(item.getId() == id) {
+				
+				item.setId(body.getId());
+				item.setName(body.getName());
+				item.setBirthDate(body.getBirthDate());
+				item.setCategory(body.getCategory());
+				item.setOwner(body.getOwner());
 				
 				updatePet = item;
 			}
@@ -85,7 +86,7 @@ public class PetController {
 		for(int i = 0; i < petList.size(); i++) {
 			Pet item = petList.get(i);
 			
-			if(item.id == id) {
+			if(item.getId() == id) {
 				petList.remove(i);
 				return ResponseEntity.status(HttpStatus.OK).build();
 			}

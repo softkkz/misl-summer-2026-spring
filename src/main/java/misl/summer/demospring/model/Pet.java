@@ -15,10 +15,57 @@ public class Pet {
 		
 	}
 	
-	public int id;
-	public String name;
-	public String birthDate;
-	public String category;
-	public String owner;
+	private int id;
+	private String name;
+	private String birthDate;
+	private String category;
+	private String owner;
+	
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getBirthDate() {
+		return birthDate;
+	}
+	
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+	
+	public String getCategory() {
+		return category;
+	}
+	
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	
+	public String getOwner() {
+		return owner;
+	}
+	
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+	
+	
+	
+	
+	
+	
 	
 }
