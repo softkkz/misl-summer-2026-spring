@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import misl.summer.demospring.model.Pet;
+import misl.summer.demospring.model.PetOwner;
 
 @Controller
 @RequestMapping("/pet")
@@ -25,9 +26,12 @@ public class PetController {
 	public PetController() {
 		petList = new ArrayList<Pet>();
 		
-		Pet pet1 = new Pet(1, "BoBo", "01/05/2569", "Dog", "IT");
-		Pet pet2 = new Pet(2, "Black", "12/12/2567", "Cat", "IT");
-		Pet pet3 = new Pet(3, "Noppo", "20/01/2566", "Dog", "MSU");
+		PetOwner owner1 = new PetOwner(1, "IT", "Mahasarakham University", "0633655044");
+		PetOwner owner2 = new PetOwner(2, "EN", "Mahasarakham University", "0911231213");
+		
+		Pet pet1 = new Pet(1, "BoBo", "01/05/2569", "Dog", owner1);
+		Pet pet2 = new Pet(2, "Black", "12/12/2567", "Cat", owner1);
+		Pet pet3 = new Pet(3, "Noppo", "20/01/2566", "Dog", owner2);
 		
 		
 		petList.add(pet1);

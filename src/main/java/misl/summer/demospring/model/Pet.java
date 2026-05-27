@@ -6,7 +6,7 @@ public class Pet {
 		
 	}
 	
-	public Pet(int id, String name, String birthDate, String category, String owner) {
+	public Pet(int id, String name, String birthDate, String category, PetOwner owner) {
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
@@ -19,7 +19,7 @@ public class Pet {
 	private String name;
 	private String birthDate;
 	private String category;
-	private String owner;
+	private PetOwner owner;
 	
 	
 	public int getId() {
@@ -54,11 +54,11 @@ public class Pet {
 		this.category = category;
 	}
 	
-	public String getOwner() {
+	public PetOwner getOwner() {
 		return owner;
 	}
 	
-	public void setOwner(String owner) {
+	public void setOwner(PetOwner owner) {
 		this.owner = owner;
 	}
 	
