@@ -1,12 +1,21 @@
 package misl.summer.demospring.model;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
 public class Pet {
 
 	public Pet() {
 		
 	}
 	
-	public Pet(int id, String name, String birthDate, String category, PetOwner owner) {
+	public Pet(Integer id, String name, String birthDate, String category, PetOwner owner) {
 		this.id = id;
 		this.name = name;
 		this.birthDate = birthDate;
@@ -15,18 +24,22 @@ public class Pet {
 		
 	}
 	
-	private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String name;
 	private String birthDate;
 	private String category;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
 	private PetOwner owner;
 	
 	
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	
